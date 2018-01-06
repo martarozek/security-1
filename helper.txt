@@ -1,0 +1,31 @@
+token = [start] ---> sp = 0
+
+token = [start, lp] ---> sp = 1, canary_offset = 0
+
+token = [start, lp, lp, ..., lp] ---> sp = 32, canary_offset = 31
+value = [(0)0, (1)0, ..., (31)0] (32)canary
+input = ')' * 31
+
+|
+v
+
+token = [start, lp, lp, ..., lp, num] ---> sp = 31
+value = [(0)0, (1)0, ..., (31)canary] (32)canary
+input = ')' * 30
+
+|
+v
+
+...
+
+|
+v
+
+token = [start, num] ---> sp = 1
+value = [0, canary]
+
+
+[0, ..., 31] [canary] [got]  [0] [rbp] [return address][ ] [dynamic offset] [0] [__libc_start_main]
+    value       32      33   34   35        36          37         38        39         40
+
+
