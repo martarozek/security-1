@@ -1,3 +1,3 @@
-calc-easy uses ``socat``
-flag: flag.txt in the calc's working directory
-both were compiled with the provided libc
+- calc-easy runs on ``socat``
+- flag: flag.txt in the calc's working directory
+- both versions compiled with the provided libc, under a 32-bit Debian
